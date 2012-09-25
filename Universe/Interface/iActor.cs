@@ -7,5 +7,6 @@ namespace Universe.Interface
 {
     interface iActor
     {
+
     }
 }
