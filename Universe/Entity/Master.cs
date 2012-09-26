@@ -14,19 +14,19 @@ namespace Universe.Entity
 
         #region Constructor
         public Master()
-            : base(new DNA(true))
+            : base(null, new DNA(true))
         {
             this.TimeInterval = 2000;
             this.TimeMinLapse = 15;
-            this.environment = new Universe.Life.Environment();
+            this.environment = new Universe.Life.Environment(this);
         }
 
         public Master(int aTimeInterval, int aTimeMinLapse)
-            : base(new DNA(true))
+            : base(null, new DNA(true))
         {
             this.TimeInterval = aTimeInterval;
             this.TimeMinLapse = aTimeMinLapse;
-            this.environment = new Universe.Life.Environment();
+            this.environment = new Universe.Life.Environment(this);
         }
         #endregion
 

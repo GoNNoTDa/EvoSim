@@ -12,7 +12,7 @@ namespace Universe.Life
         #endregion
 
         #region Constructor
-        public Environment()
+        public Environment(LifeForm aMaster) : base (aMaster)
         {
         }
         #endregion

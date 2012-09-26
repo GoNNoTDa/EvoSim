@@ -26,10 +26,24 @@ namespace Universe.Life
                 _InProgress = value;
             }
         }
+        public LifeForm Master
+        {
+            get
+            {
+                return _Master;
+            }
+            set
+            {
+                if (_Master == value)
+                    return;
+                _Master = value;
+            }
+        }
         #endregion
 
         #region Private Atributes
         private bool _InProgress;
+        private LifeForm _Master;
         #endregion
 
         #region IDisposable
@@ -126,18 +140,21 @@ namespace Universe.Life
         #endregion
 
         #region Constructor
-        public LifeForm()
+        public LifeForm(LifeForm aMaster)
         {
+            this._Master = aMaster;
             this.BeginMainTask();
         }
 
-        public LifeForm(DNA aDna)
+        public LifeForm(LifeForm aMaster, DNA aDna)
         {
+            this._Master = aMaster;
             this.BeginMainTask();
         }
 
-        public LifeForm(DNA aDna1, DNA aDna2)
+        public LifeForm(LifeForm aMaster, DNA aDna1, DNA aDna2)
         {
+            this._Master = aMaster;
             this.BeginMainTask();
         }
         #endregion
