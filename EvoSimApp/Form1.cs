@@ -22,7 +22,6 @@ namespace EvoSimApp
         private void button1_Click(object sender, EventArgs e)
         {
             Dios = new Master();
-            Dios.BigBang();
         }
 
         private void button2_Click(object sender, EventArgs e)
