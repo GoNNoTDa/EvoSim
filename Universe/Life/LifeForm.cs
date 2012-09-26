@@ -12,6 +12,24 @@ namespace Universe.Life
     {
         #region Public Atributes
         public DNA dna;
+        public Thread mind;
+        public bool InProgress
+        {
+            get
+            {
+                return _InProgress;
+            }
+            set
+            {
+                if (_InProgress == value)
+                    return;
+                _InProgress = value;
+            }
+        }
+        #endregion
+
+        #region Private Atributes
+        private bool _InProgress;
         #endregion
 
         #region IDisposable
@@ -43,6 +61,7 @@ namespace Universe.Life
             // Si no se esta destruyendo ya…
             if (!disposing)
             {
+                this.FinishMainTask();
                 // La marco como desechada ó desechandose,
                 // de forma que no se puede ejecutar este código
                 // dos veces.
@@ -70,17 +89,39 @@ namespace Universe.Life
         }        
         #endregion
 
+        #region iLifeForm
+        public virtual void DoMainTask()
+        {
+        }
+
+        public virtual void BeginMainTask() 
+        {
+            this._InProgress = true;
+            this.mind = new Thread(this.DoMainTask);
+            this.mind.Start();
+        }
+
+        public virtual void FinishMainTask()
+        {
+            this._InProgress = false;
+            this.mind = null;
+        }
+        #endregion
+
         #region Constructor
         public LifeForm()
         {
+            this.BeginMainTask();
         }
 
         public LifeForm(DNA aDna)
         {
+            this.BeginMainTask();
         }
 
         public LifeForm(DNA aDna1, DNA aDna2)
         {
+            this.BeginMainTask();
         }
         #endregion
     }

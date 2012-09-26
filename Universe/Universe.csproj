@@ -44,6 +44,7 @@
     <Compile Include="Entity\Master.cs" />
     <Compile Include="Entity\Skill.cs" />
     <Compile Include="Interface\iLifeForm.cs" />
+    <Compile Include="Life\Environment.cs" />
     <Compile Include="Life\LifeForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

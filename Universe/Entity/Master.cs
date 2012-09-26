@@ -10,27 +10,24 @@ namespace Universe.Entity
     public class Master : LifeForm
     {
         #region Private Atributes
-        private Thread timeLine;
-        private DateTime curDate;
-        private bool TimeFlowing = false;
-        private int TimeInterval = 2000;
-        private int TimeMinLapse = 15;
+        private DateTime curDate = new DateTime(1, 1, 1, 0, 0, 0);
+        private int TimeInterval;
+        private int TimeMinLapse;
         #endregion
 
         #region Constructor
         public Master()
             : base(new DNA(true))
         {
+            this.TimeInterval = 2000;
+            this.TimeMinLapse = 15;
         }
 
-        public Master(DNA aDna)
+        public Master(int aTimeInterval, int aTimeMinLapse)
             : base(new DNA(true))
         {
-        }
-
-        public Master(DNA aDna1, DNA aDna2)
-            : base(new DNA(true))
-        {
+            this.TimeInterval = aTimeInterval;
+            this.TimeMinLapse = aTimeMinLapse;
         }
         #endregion
 
@@ -41,45 +38,43 @@ namespace Universe.Entity
         }
         #endregion
 
+        #region iLifeForm
+        public override void DoMainTask()
+        {
+            this.TimeFlow();
+        }
+        #endregion
+
         #region Time Management
         private readonly System.Object lockTime = new System.Object();
 
         private void TimeFlow()
         {
-            while (TimeFlowing)
+            while (this.InProgress)
             {
-                curDate = curDate.AddMinutes(TimeMinLapse);
-                Thread.Sleep(TimeInterval);
+                this.curDate = this.curDate.AddMinutes(this.TimeMinLapse);
+                Thread.Sleep(this.TimeInterval);
             }
         }
 
         public DateTime WhatTimeIsIt()
         {
-            lock (lockTime)
+            lock (this.lockTime)
             {
-                return curDate;
+                return this.curDate;
             }
         }
         #endregion
 
         #region MainFunction
-        public void BigBang()
-        {
-            curDate = new DateTime(1, 1, 1, 0, 0, 0);
-            ActivateTime();
-        }
-
         public void TimeFreeze()
         {
-            TimeFlowing = false;
-            timeLine = null;
+            this.FinishMainTask();
         }
 
         public void ActivateTime()
         {
-            TimeFlowing = true;
-            timeLine = new Thread(TimeFlow);
-            timeLine.Start();
+            this.BeginMainTask();
         }
         #endregion
     }
