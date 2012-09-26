@@ -10,7 +10,12 @@ namespace Universe.Interface
         #region Life Cycle
         void BeginMainTask();
         void DoMainTask();
+        void MainTask();
         void FinishMainTask();
+        #endregion
+
+        #region Handlers
+        int GetActionInterval();
         #endregion
     }
 }

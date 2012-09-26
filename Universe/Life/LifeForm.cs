@@ -90,8 +90,17 @@ namespace Universe.Life
         #endregion
 
         #region iLifeForm
+        public virtual void MainTask()
+        {
+        }
+
         public virtual void DoMainTask()
         {
+            while (this.InProgress)
+            {
+                this.MainTask();
+                Thread.Sleep(this.GetActionInterval());
+            }
         }
 
         public virtual void BeginMainTask() 
@@ -105,6 +114,13 @@ namespace Universe.Life
         {
             this._InProgress = false;
             this.mind = null;
+        }
+
+        public virtual int GetActionInterval()
+        {
+            int x = 2000;
+            //TODO
+            return x;
         }
         #endregion
 

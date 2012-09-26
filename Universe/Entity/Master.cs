@@ -39,23 +39,14 @@ namespace Universe.Entity
         #endregion
 
         #region iLifeForm
-        public override void DoMainTask()
+        public override void MainTask()
         {
-            this.TimeFlow();
+            this.curDate = this.curDate.AddMinutes(this.TimeMinLapse);
         }
         #endregion
 
         #region Time Management
         private readonly System.Object lockTime = new System.Object();
-
-        private void TimeFlow()
-        {
-            while (this.InProgress)
-            {
-                this.curDate = this.curDate.AddMinutes(this.TimeMinLapse);
-                Thread.Sleep(this.TimeInterval);
-            }
-        }
 
         public DateTime WhatTimeIsIt()
         {

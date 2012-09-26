@@ -10,7 +10,7 @@ namespace Universe.Life
     public class Environment : LifeForm
     {
         #region iLifeForm
-        public override void DoMainTask()
+        public override void MainTask()
         {
         }
         #endregion
