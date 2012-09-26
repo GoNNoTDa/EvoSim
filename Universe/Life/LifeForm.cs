@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Universe.Entity
+namespace Universe.Life
 {
-    class Mind
+    class LifeForm
     {
     }
 }
