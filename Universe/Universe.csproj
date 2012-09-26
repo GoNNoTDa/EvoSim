@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Entity\Master.cs" />
     <Compile Include="Interface\iActor.cs" />
-    <Compile Include="Life\iLifeForm.cs" />
+    <Compile Include="Interface\iLifeForm.cs" />
     <Compile Include="Life\LifeForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
