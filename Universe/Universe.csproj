@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\eActor.cs" />
+    <Compile Include="Entity\Life.cs" />
     <Compile Include="Entity\Master.cs" />
+    <Compile Include="Entity\Mind.cs" />
     <Compile Include="Interface\iActor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
