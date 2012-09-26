@@ -92,6 +92,7 @@ namespace Universe.Life
         #region iLifeForm
         public virtual void MainTask()
         {
+            //Tarea repetitiva que se debe implementar
         }
 
         public virtual void DoMainTask()

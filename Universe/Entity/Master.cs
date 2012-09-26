@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Universe.Life;
-using System.Threading;
 
 namespace Universe.Entity
 {
@@ -50,6 +46,11 @@ namespace Universe.Entity
         public override void MainTask()
         {
             this.curDate = this.curDate.AddMinutes(this.TimeMinLapse);
+        }
+
+        public override int GetActionInterval()
+        {
+            return this.TimeInterval;
         }
         #endregion
 
