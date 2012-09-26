@@ -12,27 +12,12 @@ namespace Universe.Life
         #region iLifeForm
         public override void MainTask()
         {
-        }
-        #endregion
-
-        #region IDisposable
-        protected override void Dispose(bool b)
-        {
+            Thread.Sleep(0);
         }
         #endregion
 
         #region Constructor
         public Environment()
-        {
-        }
-
-        public Environment(DNA aDna)
-            : base(aDna)
-        {
-        }
-
-        public Environment(DNA aDna1, DNA aDna2)
-            : base(aDna1, aDna2)
         {
         }
         #endregion

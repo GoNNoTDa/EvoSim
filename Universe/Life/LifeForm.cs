@@ -118,7 +118,7 @@ namespace Universe.Life
 
         public virtual int GetActionInterval()
         {
-            int x = 2000;
+            int x = 500;
             //TODO
             return x;
         }

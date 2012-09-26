@@ -13,6 +13,7 @@ namespace Universe.Entity
         private DateTime curDate = new DateTime(1, 1, 1, 0, 0, 0);
         private int TimeInterval;
         private int TimeMinLapse;
+        private Universe.Life.Environment environment;
         #endregion
 
         #region Constructor
@@ -21,6 +22,7 @@ namespace Universe.Entity
         {
             this.TimeInterval = 2000;
             this.TimeMinLapse = 15;
+            this.environment = new Universe.Life.Environment();
         }
 
         public Master(int aTimeInterval, int aTimeMinLapse)
@@ -28,6 +30,7 @@ namespace Universe.Entity
         {
             this.TimeInterval = aTimeInterval;
             this.TimeMinLapse = aTimeMinLapse;
+            this.environment = new Universe.Life.Environment();
         }
         #endregion
 
@@ -35,6 +38,11 @@ namespace Universe.Entity
         protected override void Dispose(bool b)
         {
             this.TimeFreeze();
+            if (this.environment != null)
+            {
+                this.environment.Dispose();
+                this.environment = null;
+            }
         }
         #endregion
 
