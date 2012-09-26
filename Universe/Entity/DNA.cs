@@ -5,10 +5,25 @@ using System.Text;
 
 namespace Universe.Entity
 {
-    class DNA
+    public class DNA
     {
+        private bool _IsMaster;
+        private Guid _Id = Guid.NewGuid();
+        //private List<Skill> _Skills;
+
+
+        private void LoadSkillsFromDNA()
+        {
+        }
+
         public DNA()
         {
+            this.LoadSkillsFromDNA();
+        }
+
+        public DNA(bool aIsMaster) : this()
+        {
+            this._IsMaster = aIsMaster;
         }
     }
 }
