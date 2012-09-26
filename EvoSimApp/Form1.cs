@@ -21,23 +21,32 @@ namespace EvoSimApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Dios = new Master();
+            Dios = new Master(500, 15);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Dios.TimeFreeze();
+            if (Dios != null)
+            {
+                Dios.TimeFreeze();
+            }            
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Dios.ActivateTime();
+            if (Dios != null)
+            {
+                Dios.ActivateTime();
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Dios.Dispose();
-            Dios = null;
+            if (Dios != null)
+            {
+                Dios.Dispose();
+                Dios = null;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -54,8 +63,11 @@ namespace EvoSimApp
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Dios.Dispose();
-            Dios = null;
+            if (Dios != null)
+            {
+                Dios.Dispose();
+                Dios = null;
+            }
         }
     }
 }
