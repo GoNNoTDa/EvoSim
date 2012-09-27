@@ -19,14 +19,22 @@ namespace Universe.Life
 
         public override void ManageMasterNotification(NotificationType aNotifyType, LifeForm aLifeForm)
         {
-            if (ManagedOnes.ContainsValue(aLifeForm))
-                ManagedOnes.Remove(aLifeForm.dna.Id);
+            switch (aNotifyType)
+            {
+                case Life.NotificationType.Born:
+                    if (!ManagedOnes.ContainsValue(aLifeForm))
+                        ManagedOnes.Add(aLifeForm.dna.Id, aLifeForm);
+                    break;
+                case Life.NotificationType.Dead:
+                    if (ManagedOnes.ContainsValue(aLifeForm))
+                        ManagedOnes.Remove(aLifeForm.dna.Id);
+                    break;
+            }
         }
 
         public override void NotifyMasterLifeForm(NotificationType aNotifyType, LifeForm aLifeForm)
         {
-            if (NotificationType.Dead == aNotifyType)
-                ManageMasterNotification(aNotifyType, aLifeForm);
+            ManageMasterNotification(aNotifyType, aLifeForm);
             base.NotifyMasterLifeForm(aNotifyType, aLifeForm);
         }
         #endregion
