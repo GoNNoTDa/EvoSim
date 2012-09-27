@@ -2,7 +2,7 @@
 
 namespace Universe.Life
 {
-    public class Environment : LifeForm
+    public class EnvironmentLifeForm : LifeForm
     {
         #region iLifeForm
         public override void MainTask()
@@ -12,7 +12,8 @@ namespace Universe.Life
         #endregion
 
         #region Constructor
-        public Environment(LifeForm aMaster) : base (aMaster)
+        public EnvironmentLifeForm(LifeForm aMaster)
+            : base(aMaster)
         {
         }
         #endregion
