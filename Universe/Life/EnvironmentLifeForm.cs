@@ -1,10 +1,16 @@
 ﻿using System.Threading;
 using Universe.Entity;
+using System.Collections.Generic;
+using System;
 
 namespace Universe.Life
 {
     public class EnvironmentLifeForm : LifeForm
     {
+        #region Private Attribute
+        private Dictionary<Guid, LifeForm> ManagedOnes = new Dictionary<Guid, LifeForm>();
+        #endregion
+
         #region iLifeForm
         public override void MainTask()
         {
@@ -13,12 +19,14 @@ namespace Universe.Life
 
         public override void ManageMasterNotification(NotificationType aNotifyType, LifeForm aLifeForm)
         {
-            //FINAL RELEASE
+            if (ManagedOnes.ContainsValue(aLifeForm))
+                ManagedOnes.Remove(aLifeForm.dna.Id);
         }
 
         public override void NotifyMasterLifeForm(NotificationType aNotifyType, LifeForm aLifeForm)
         {
-            ManageMasterNotification(aNotifyType, aLifeForm);
+            if (NotificationType.Dead == aNotifyType)
+                ManageMasterNotification(aNotifyType, aLifeForm);
             base.NotifyMasterLifeForm(aNotifyType, aLifeForm);
         }
         #endregion

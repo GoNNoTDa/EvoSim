@@ -1,5 +1,7 @@
 ﻿using System;
 using Universe.Life;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Universe.Entity
 {
@@ -10,6 +12,8 @@ namespace Universe.Entity
         private readonly int TimeInterval;
         private readonly int TimeMinLapse;
         private EnvironmentLifeForm environment;
+        private Dictionary<Guid, LifeForm> LivingOnes = new Dictionary<Guid,LifeForm>();
+        private Dictionary<Guid, LifeForm> DeadOnes = new Dictionary<Guid, LifeForm>();
         #endregion
 
         #region Constructor
@@ -31,19 +35,24 @@ namespace Universe.Entity
         public MasterLifeForm(LifeForm aMaster)
             : base(aMaster)
         {
-            
+            TimeInterval = 2000;
+            TimeMinLapse = 15;
+            environment = new EnvironmentLifeForm(this);   
         }
         public MasterLifeForm(LifeForm aMaster, DNA aDna)
             : base(aMaster, aDna)
         {
-            
+            TimeInterval = 2000;
+            TimeMinLapse = 15;
+            environment = new EnvironmentLifeForm(this);
         }
         public MasterLifeForm(LifeForm aMaster, DNA aDna1, DNA aDna2)
             : base(aMaster, aDna1, aDna2)
         {
-            
-        }
-         
+            TimeInterval = 2000;
+            TimeMinLapse = 15;
+            environment = new EnvironmentLifeForm(this);
+        }         
         #endregion
 
         #region IDisposable
@@ -71,7 +80,20 @@ namespace Universe.Entity
 
         public override void ManageMasterNotification(NotificationType aNotifyType, LifeForm aLifeForm)
         {
-            //FINAL RELEASE
+            switch (aNotifyType)
+            {
+                case Life.NotificationType.Born:
+                    if (!LivingOnes.ContainsValue(aLifeForm))
+                        LivingOnes.Add(aLifeForm.dna.Id, aLifeForm);
+                    break;
+                case Life.NotificationType.Dead:
+                    if (LivingOnes.ContainsValue(aLifeForm))
+                    {
+                        LivingOnes.Remove(aLifeForm.dna.Id);
+                        DeadOnes.Add(aLifeForm.dna.Id, aLifeForm);
+                    }
+                    break;
+            }
         }
         #endregion
 
