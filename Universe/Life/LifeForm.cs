@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace Universe.Life
 {
-    public class LifeForm : iLifeForm, IDisposable
+    public class LifeForm : iLifeForm, IDisposable, IComparable
     {
         #region Public Atributes
         public DNA dna;
@@ -100,6 +100,15 @@ namespace Universe.Life
             // para liberar los recursos de esta clase.
             Dispose(true);
         }        
+        #endregion
+
+        #region IComparable
+        public int CompareTo(object obj)
+        {
+            if (obj is LifeForm)
+                return this.dna.Id.CompareTo((obj as LifeForm).dna.Id);
+            throw new ArgumentException("Object is not a LifeForm");
+        }
         #endregion
 
         #region iLifeForm

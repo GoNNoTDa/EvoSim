@@ -7,7 +7,7 @@ namespace Universe.Entity
     public class DNA
     {
         private readonly bool _IsMaster;
-        private readonly Guid _Id = Guid.NewGuid();
+        public readonly Guid Id = Guid.NewGuid();
         //private List<Skill> _Skills;
 
 
