@@ -10,6 +10,17 @@ namespace Universe.Life
         {
             Thread.Sleep(0);
         }
+
+        public override void ManageMasterNotification(NotificationType aNotifyType, LifeForm aLifeForm)
+        {
+            //FINAL RELEASE
+        }
+
+        public override void NotifyMasterLifeForm(NotificationType aNotifyType, LifeForm aLifeForm)
+        {
+            ManageMasterNotification(aNotifyType, aLifeForm);
+            base.NotifyMasterLifeForm(aNotifyType, aLifeForm);
+        }
         #endregion
 
         #region Constructor

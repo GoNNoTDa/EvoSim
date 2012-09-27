@@ -68,6 +68,11 @@ namespace Universe.Entity
         {
             return TimeInterval;
         }
+
+        public override void ManageMasterNotification(NotificationType aNotifyType, LifeForm aLifeForm)
+        {
+            //FINAL RELEASE
+        }
         #endregion
 
         #region Time Management

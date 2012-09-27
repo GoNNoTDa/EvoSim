@@ -130,6 +130,24 @@ namespace Universe.Life
             mind = null;
         }
 
+        public virtual void Dead()
+        {
+            FinishMainTask();
+            NotifyMasterLifeForm(NotificationType.Dead, this);
+        }
+
+        public virtual void NotifyMasterLifeForm(NotificationType aNotifyType, LifeForm aLifeForm)
+        {
+            if (_Master != null)
+                _Master.NotifyMasterLifeForm(aNotifyType, aLifeForm);
+            else
+                ManageMasterNotification(aNotifyType, aLifeForm);
+        }
+
+        public virtual void ManageMasterNotification(NotificationType aNotifyType, LifeForm aLifeForm)
+        {
+        }
+
         public virtual int GetActionInterval()
         {
             //TODO
