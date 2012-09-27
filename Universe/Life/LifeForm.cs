@@ -38,6 +38,9 @@ namespace Universe.Life
                 _Master = value;
             }
         }
+        public DateTime BirthDate;
+        public DateTime LifeDate;
+        private int Ticks;
         #endregion
 
         #region Private Atributes
