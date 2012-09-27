@@ -7,8 +7,8 @@ namespace Universe.Entity
     {
         #region Private Atributes
         private DateTime curDate = new DateTime(1, 1, 1, 0, 0, 0);
-        private int TimeInterval;
-        private int TimeMinLapse;
+        private readonly int TimeInterval;
+        private readonly int TimeMinLapse;
         private EnvironmentLifeForm environment;
         #endregion
 
@@ -16,28 +16,44 @@ namespace Universe.Entity
         public MasterLifeForm()
             : base(null, new DNA(true))
         {
-            this.TimeInterval = 2000;
-            this.TimeMinLapse = 15;
-            this.environment = new EnvironmentLifeForm(this);
+            TimeInterval = 2000;
+            TimeMinLapse = 15;
+            environment = new EnvironmentLifeForm(this);
         }
 
         public MasterLifeForm(int aTimeInterval, int aTimeMinLapse)
             : base(null, new DNA(true))
         {
-            this.TimeInterval = aTimeInterval;
-            this.TimeMinLapse = aTimeMinLapse;
-            this.environment = new EnvironmentLifeForm(this);
+            TimeInterval = aTimeInterval;
+            TimeMinLapse = aTimeMinLapse;
+            environment = new EnvironmentLifeForm(this);
         }
+        public MasterLifeForm(LifeForm aMaster)
+            : base(aMaster)
+        {
+            
+        }
+        public MasterLifeForm(LifeForm aMaster, DNA aDna)
+            : base(aMaster, aDna)
+        {
+            
+        }
+        public MasterLifeForm(LifeForm aMaster, DNA aDna1, DNA aDna2)
+            : base(aMaster, aDna1, aDna2)
+        {
+            
+        }
+         
         #endregion
 
         #region IDisposable
         protected override void Dispose(bool b)
         {
-            this.TimeFreeze();
-            if (this.environment != null)
+            TimeFreeze();
+            if (environment != null)
             {
-                this.environment.Dispose();
-                this.environment = null;
+                environment.Dispose();
+                environment = null;
             }
         }
         #endregion
@@ -45,23 +61,23 @@ namespace Universe.Entity
         #region iLifeForm
         public override void MainTask()
         {
-            this.curDate = this.curDate.AddMinutes(this.TimeMinLapse);
+            curDate = curDate.AddMinutes(TimeMinLapse);
         }
 
         public override int GetActionInterval()
         {
-            return this.TimeInterval;
+            return TimeInterval;
         }
         #endregion
 
         #region Time Management
-        private readonly System.Object lockTime = new System.Object();
+        private readonly Object lockTime = new Object();
 
         public DateTime WhatTimeIsIt()
         {
-            lock (this.lockTime)
+            lock (lockTime)
             {
-                return this.curDate;
+                return curDate;
             }
         }
         #endregion
@@ -69,12 +85,12 @@ namespace Universe.Entity
         #region MainFunction
         public void TimeFreeze()
         {
-            this.FinishMainTask();
+            FinishMainTask();
         }
 
         public void ActivateTime()
         {
-            this.BeginMainTask();
+            BeginMainTask();
         }
         #endregion
     }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Universe.Interface;
 using Universe.Entity;
 using System.Threading;
@@ -75,7 +74,7 @@ namespace Universe.Life
             // Si no se esta destruyendo ya…
             if (!disposing)
             {
-                this.FinishMainTask();
+                FinishMainTask();
                 // La marco como desechada ó desechandose,
                 // de forma que no se puede ejecutar este código
                 // dos veces.
@@ -111,51 +110,50 @@ namespace Universe.Life
 
         public virtual void DoMainTask()
         {
-            while (this.InProgress)
+            while (InProgress)
             {
-                this.MainTask();
-                Thread.Sleep(this.GetActionInterval());
+                MainTask();
+                Thread.Sleep(GetActionInterval());
             }
         }
 
         public virtual void BeginMainTask() 
         {
-            this._InProgress = true;
-            this.mind = new Thread(this.DoMainTask);
-            this.mind.Start();
+            _InProgress = true;
+            mind = new Thread(DoMainTask);
+            mind.Start();
         }
 
         public virtual void FinishMainTask()
         {
-            this._InProgress = false;
-            this.mind = null;
+            _InProgress = false;
+            mind = null;
         }
 
         public virtual int GetActionInterval()
         {
-            int x = 500;
             //TODO
-            return x;
+            return 500;
         }
         #endregion
 
         #region Constructor
         public LifeForm(LifeForm aMaster)
         {
-            this._Master = aMaster;
-            this.BeginMainTask();
+            _Master = aMaster;
+            BeginMainTask();
         }
 
         public LifeForm(LifeForm aMaster, DNA aDna)
         {
-            this._Master = aMaster;
-            this.BeginMainTask();
+            _Master = aMaster;
+            BeginMainTask();
         }
 
         public LifeForm(LifeForm aMaster, DNA aDna1, DNA aDna2)
         {
-            this._Master = aMaster;
-            this.BeginMainTask();
+            _Master = aMaster;
+            BeginMainTask();
         }
         #endregion
     }
