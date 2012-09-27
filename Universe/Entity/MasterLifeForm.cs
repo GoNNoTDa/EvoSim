@@ -3,7 +3,7 @@ using Universe.Life;
 
 namespace Universe.Entity
 {
-    public class Master : LifeForm
+    public class MasterLifeForm : LifeForm
     {
         #region Private Atributes
         private DateTime curDate = new DateTime(1, 1, 1, 0, 0, 0);
@@ -13,7 +13,7 @@ namespace Universe.Entity
         #endregion
 
         #region Constructor
-        public Master()
+        public MasterLifeForm()
             : base(null, new DNA(true))
         {
             this.TimeInterval = 2000;
@@ -21,7 +21,7 @@ namespace Universe.Entity
             this.environment = new EnvironmentLifeForm(this);
         }
 
-        public Master(int aTimeInterval, int aTimeMinLapse)
+        public MasterLifeForm(int aTimeInterval, int aTimeMinLapse)
             : base(null, new DNA(true))
         {
             this.TimeInterval = aTimeInterval;

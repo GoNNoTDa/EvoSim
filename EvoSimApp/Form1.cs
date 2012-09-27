@@ -12,7 +12,7 @@ namespace EvoSimApp
 {
     public partial class Form1 : Form
     {
-        private Master Dios;
+        private MasterLifeForm Dios;
 
         public Form1()
         {
@@ -21,7 +21,7 @@ namespace EvoSimApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Dios = new Master(500, 15);
+            Dios = new MasterLifeForm(500, 15);
         }
 
         private void button2_Click(object sender, EventArgs e)
