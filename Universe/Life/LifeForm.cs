@@ -130,7 +130,7 @@ namespace Universe.Life
             while (InProgress)
             {
                 MainTask();
-                Thread.Sleep(GetActionInterval());
+                Thread.Sleep(GetAttribute(SkillTypes.ActionInterval));
             }
         }
 
@@ -165,23 +165,16 @@ namespace Universe.Life
         {
         }
 
-        public virtual int GetAttribute(SkillTypes aSkill)
+        public virtual int GetAttribute(SkillTypes aSkillType)
         {
-            //TODO
-            return 500;
+            return (dna != null) ? dna.GetAttribute(aSkillType) : 0;
         }
         #endregion
 
         #region Self-management
         private static void ReGenerateADN(LifeFormTypes aLifeFormType, DNASequence aDna)
         {
-            if (aDna != null)
-            {
-                dna = new DNASequence(aDna);
-            }
-            else
-            {
-            }
+            dna = new DNASequence(aLifeFormType, aDna);
         }
         #endregion
 

@@ -7,7 +7,7 @@ namespace Universe.Misc
 {
     public enum SkillTypes
     {
-        MasterTimeInterval,
+        LifeFormType,
         MasterTimeLapse,
         ActionInterval,
         Dead
