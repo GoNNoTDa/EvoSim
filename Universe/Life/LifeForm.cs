@@ -4,13 +4,14 @@ using System.Linq;
 using Universe.Interface;
 using Universe.Entity;
 using System.Threading;
+using Universe.Misc;
 
 namespace Universe.Life
 {
     public class LifeForm : iLifeForm, IDisposable, IComparable
     {
         #region Public Atributes
-        public DNA dna;
+        public DNASequence dna;
         public Thread mind;
         public bool InProgress
         {
@@ -40,6 +41,10 @@ namespace Universe.Life
         }
         public DateTime BirthDate;
         public DateTime LifeDate;
+        public LifeFormTypes Type;
+        #endregion
+
+        #region Private Atributes
         private int Ticks;
         #endregion
 
@@ -160,29 +165,41 @@ namespace Universe.Life
         {
         }
 
-        public virtual int GetActionInterval()
+        public virtual int GetAttribute(SkillTypes aSkill)
         {
             //TODO
             return 500;
         }
         #endregion
 
+        #region Self-management
+        private static void ReGenerateADN(LifeFormTypes aLifeFormType, DNASequence aDna)
+        {
+            if (aDna != null)
+            {
+                dna = new DNASequence(aDna);
+            }
+            else
+            {
+            }
+        }
+        #endregion
+
+
         #region Constructor
-        public LifeForm(LifeForm aMaster)
+        public LifeForm(LifeForm aMaster, LifeFormTypes aLifeFormType)
         {
             _Master = aMaster;
+            Type = aLifeFormType;
+            ReGenerateADN(aLifeFormType, null);
             BeginMainTask();
         }
 
-        public LifeForm(LifeForm aMaster, DNA aDna)
+        public LifeForm(LifeForm aMaster, LifeFormTypes aLifeFormType, DNASequence aDna)
         {
             _Master = aMaster;
-            BeginMainTask();
-        }
-
-        public LifeForm(LifeForm aMaster, DNA aDna1, DNA aDna2)
-        {
-            _Master = aMaster;
+            Type = aLifeFormType;
+            ReGenerateADN(aLifeFormType, aDna);
             BeginMainTask();
         }
         #endregion

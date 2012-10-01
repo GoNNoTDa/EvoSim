@@ -2,6 +2,7 @@
 using Universe.Life;
 using System.Collections;
 using System.Collections.Generic;
+using Universe.Misc;
 
 namespace Universe.Entity
 {
@@ -16,9 +17,22 @@ namespace Universe.Entity
         private Dictionary<Guid, LifeForm> DeadOnes = new Dictionary<Guid, LifeForm>();
         #endregion
 
+        #region Public Attributes
+        public ArrayList ListAllLivingOnes
+        {
+            get
+            {
+                ArrayList newList = new ArrayList();
+                foreach (LifeForm lf in LivingOnes.Values)
+                    newList.Add(lf);
+                return newList;
+            }
+        }
+        #endregion
+
         #region Constructor
         public MasterLifeForm()
-            : base(null, new DNA(true))
+            : base(null, LifeFormTypes.MasterEntity, null)
         {
             TimeInterval = 2000;
             TimeMinLapse = 15;
@@ -26,33 +40,12 @@ namespace Universe.Entity
         }
 
         public MasterLifeForm(int aTimeInterval, int aTimeMinLapse)
-            : base(null, new DNA(true))
+            : base(null, LifeFormTypes.MasterEntity, null)
         {
             TimeInterval = aTimeInterval;
             TimeMinLapse = aTimeMinLapse;
             environment = new EnvironmentLifeForm(this);
-        }
-        public MasterLifeForm(LifeForm aMaster)
-            : base(aMaster)
-        {
-            TimeInterval = 2000;
-            TimeMinLapse = 15;
-            environment = new EnvironmentLifeForm(this);   
-        }
-        public MasterLifeForm(LifeForm aMaster, DNA aDna)
-            : base(aMaster, aDna)
-        {
-            TimeInterval = 2000;
-            TimeMinLapse = 15;
-            environment = new EnvironmentLifeForm(this);
-        }
-        public MasterLifeForm(LifeForm aMaster, DNA aDna1, DNA aDna2)
-            : base(aMaster, aDna1, aDna2)
-        {
-            TimeInterval = 2000;
-            TimeMinLapse = 15;
-            environment = new EnvironmentLifeForm(this);
-        }         
+        }   
         #endregion
 
         #region IDisposable

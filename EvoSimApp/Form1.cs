@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Universe.Entity;
+using Universe.Life;
 
 namespace EvoSimApp
 {
@@ -54,6 +55,10 @@ namespace EvoSimApp
             if (Dios != null)
             {
                 label1.Text = Dios.WhatTimeIsIt().ToString();
+                foreach (LifeForm lif in Dios.ListAllLivingOnes)
+                {
+                    listBox1.Items.Add(String.Format("{0}: {1}", lif.GetType(), lif.BirthDate));
+                }
             }
             else
             {
@@ -68,11 +73,6 @@ namespace EvoSimApp
                 Dios.Dispose();
                 Dios = null;
             }
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

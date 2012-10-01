@@ -59,12 +59,12 @@ namespace Universe.Life
         {
             FoodValue = 0;
         }
-        public FoodLifeForm(LifeForm aMaster, DNA aDna)
+        public FoodLifeForm(LifeForm aMaster, DNASequence aDna)
             : base(aMaster, aDna)
         {
             FoodValue = 0;
         }
-        public FoodLifeForm(LifeForm aMaster, DNA aDna1, DNA aDna2)
+        public FoodLifeForm(LifeForm aMaster, DNASequence aDna1, DNASequence aDna2)
             : base(aMaster, aDna1, aDna2)
         {
             FoodValue = 0;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Universe.Life;
 using Universe.Entity;
+using Universe.Misc;
 
 namespace Universe.Interface
 {
@@ -18,8 +19,8 @@ namespace Universe.Interface
         #endregion
 
         #region Handlers
-        int GetActionInterval();
-        void ManageMasterNotification(NotificationType aNotifyType, LifeForm aLifeForm); 
+        void ManageMasterNotification(NotificationType aNotifyType, LifeForm aLifeForm);
+        Int32 GetAttribute(SkillTypes aSkill);
         #endregion
     }
 }

@@ -9,6 +9,7 @@ namespace Universe.Life
     {
         #region Private Attribute
         private Dictionary<Guid, LifeForm> ManagedOnes = new Dictionary<Guid, LifeForm>();
+        private Int32 MaxUnits;
         #endregion
 
         #region iLifeForm
@@ -44,12 +45,12 @@ namespace Universe.Life
             : base(aMaster)
         {
         }
-        public EnvironmentLifeForm(LifeForm aMaster, DNA aDna)
+        public EnvironmentLifeForm(LifeForm aMaster, DNASequence aDna)
             : base(aMaster, aDna)
         {
             
         }
-        public EnvironmentLifeForm(LifeForm aMaster, DNA aDna1, DNA aDna2)
+        public EnvironmentLifeForm(LifeForm aMaster, DNASequence aDna1, DNASequence aDna2)
             : base(aMaster, aDna1, aDna2)
         {
             

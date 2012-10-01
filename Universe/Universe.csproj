@@ -40,14 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity\DNA.cs" />
+    <Compile Include="Entity\DNASequence.cs" />
     <Compile Include="Entity\MasterLifeForm.cs" />
     <Compile Include="Entity\Skill.cs" />
     <Compile Include="Interface\iLifeForm.cs" />
     <Compile Include="Life\EnvironmentLifeForm.cs" />
     <Compile Include="Life\FoodLifeForm.cs" />
     <Compile Include="Life\LifeForm.cs" />
+    <Compile Include="Misc\LifeFormTypes.cs" />
     <Compile Include="Misc\NotificationType.cs" />
+    <Compile Include="Misc\SkillTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

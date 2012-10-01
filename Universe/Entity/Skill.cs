@@ -1,23 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Universe.Misc;
 
 namespace Universe.Entity
 {
     public class Skill
     {
         #region Public Attributes
-        public String Name;
+        public SkillTypes Type;
         public Int32 Value;
         public Int32 Priority;
+        public Int32 Order;
         #endregion
 
         #region Constructor
-        public Skill(String aName, Int32 aValue, Int32 aPriority)
+        public Skill(SkillTypes aSkill, Int32 aValue, Int32 aPriority, Int32 aOrder)
         {
-            Name = aName;
+            Type = aSkill;
             Value = aValue;
             Priority = aPriority;
+            Order = aOrder;
         }
         #endregion
     }
