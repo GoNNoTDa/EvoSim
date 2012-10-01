@@ -11,14 +11,18 @@ namespace Universe.Life
         #region Public Attributes
         public virtual int FeedMe(int aMaxFoodValue)
         {
-            FoodValue -= aMaxFoodValue;
-            if (FoodValue <= 0)
-                Dead();
-            return (FoodValue <= 0) ? FoodValue + aMaxFoodValue : aMaxFoodValue;
+            lock (lockFood)
+            {
+                FoodValue -= aMaxFoodValue;
+                if (FoodValue <= 0)
+                    Dead();
+                return (FoodValue <= 0) ? FoodValue + aMaxFoodValue : aMaxFoodValue;
+            }
         }
         #endregion
 
         #region Private Attributes
+        private readonly Object lockFood = new Object();
         private int FoodValue;
         #endregion
 
