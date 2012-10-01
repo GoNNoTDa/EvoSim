@@ -69,5 +69,10 @@ namespace EvoSimApp
                 Dios = null;
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
