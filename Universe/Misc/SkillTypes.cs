@@ -10,6 +10,7 @@ namespace Universe.Misc
         LifeFormType,
         MasterTimeLapse,
         ActionInterval,
-        Dead
+        FoodProductionRate,
+        MaxLifeFormAllowed
     };
 }

@@ -10,8 +10,6 @@ namespace Universe.Entity
     {
         #region Private Atributes
         private DateTime curDate = new DateTime(1, 1, 1, 0, 0, 0);
-        private readonly int TimeInterval;
-        private readonly int TimeMinLapse;
         private EnvironmentLifeForm environment;
         private Dictionary<Guid, LifeForm> LivingOnes = new Dictionary<Guid,LifeForm>();
         private Dictionary<Guid, LifeForm> DeadOnes = new Dictionary<Guid, LifeForm>();
@@ -31,21 +29,25 @@ namespace Universe.Entity
         #endregion
 
         #region Constructor
+        private void GenerateMasterLifeFormDNA(Int32 aTimeInterval, Int32 aTimeMinLapse)
+        {
+            dna.Mutate(SkillTypes.ActionInterval, aTimeInterval, this);
+            dna.Mutate(SkillTypes.MasterTimeLapse, aTimeMinLapse, this);
+        }
+
         public MasterLifeForm()
             : base(null, LifeFormTypes.MasterEntity, null)
         {
-            TimeInterval = 2000;
-            TimeMinLapse = 15;
-            environment = new EnvironmentLifeForm(this);
+            GenerateMasterLifeFormDNA(2000, 15);
+            BeginMainTask();
         }
 
         public MasterLifeForm(int aTimeInterval, int aTimeMinLapse)
             : base(null, LifeFormTypes.MasterEntity, null)
         {
-            TimeInterval = aTimeInterval;
-            TimeMinLapse = aTimeMinLapse;
-            environment = new EnvironmentLifeForm(this);
-        }   
+            GenerateMasterLifeFormDNA(aTimeInterval, aTimeMinLapse);            
+            BeginMainTask();
+        }           
         #endregion
 
         #region IDisposable
@@ -63,12 +65,9 @@ namespace Universe.Entity
         #region iLifeForm
         public override void MainTask()
         {
-            curDate = curDate.AddMinutes(TimeMinLapse);
-        }
-
-        public override int GetActionInterval()
-        {
-            return TimeInterval;
+            curDate = curDate.AddMinutes(GetAttribute(SkillTypes.MasterTimeLapse));
+            if (environment == null)
+                environment = new EnvironmentLifeForm(this);
         }
 
         public override void ManageMasterNotification(NotificationType aNotifyType, LifeForm aLifeForm)

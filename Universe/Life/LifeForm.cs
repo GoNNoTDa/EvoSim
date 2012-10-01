@@ -41,7 +41,7 @@ namespace Universe.Life
         }
         public DateTime BirthDate;
         public DateTime LifeDate;
-        public LifeFormTypes Type;
+        public LifeFormTypes LfType;
         #endregion
 
         #region Private Atributes
@@ -172,28 +172,28 @@ namespace Universe.Life
         #endregion
 
         #region Self-management
-        private static void ReGenerateADN(LifeFormTypes aLifeFormType, DNASequence aDna)
+        private void ReGenerateADN(LifeFormTypes aLifeFormType, DNASequence aDna)
         {
-            dna = new DNASequence(aLifeFormType, aDna);
+            if (dna != null)
+                dna = new DNASequence(dna);
+            else
+                dna = new DNASequence(aLifeFormType);
         }
         #endregion
-
 
         #region Constructor
         public LifeForm(LifeForm aMaster, LifeFormTypes aLifeFormType)
         {
             _Master = aMaster;
-            Type = aLifeFormType;
+            LfType = aLifeFormType;
             ReGenerateADN(aLifeFormType, null);
-            BeginMainTask();
         }
 
         public LifeForm(LifeForm aMaster, LifeFormTypes aLifeFormType, DNASequence aDna)
         {
             _Master = aMaster;
-            Type = aLifeFormType;
+            LfType = aLifeFormType;
             ReGenerateADN(aLifeFormType, aDna);
-            BeginMainTask();
         }
         #endregion
     }

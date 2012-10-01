@@ -2,6 +2,7 @@
 using Universe.Entity;
 using System.Collections.Generic;
 using System;
+using Universe.Misc;
 
 namespace Universe.Life
 {
@@ -9,7 +10,6 @@ namespace Universe.Life
     {
         #region Private Attribute
         private Dictionary<Guid, LifeForm> ManagedOnes = new Dictionary<Guid, LifeForm>();
-        private Int32 MaxUnits;
         #endregion
 
         #region iLifeForm
@@ -42,20 +42,20 @@ namespace Universe.Life
 
         #region Constructor
         public EnvironmentLifeForm(LifeForm aMaster)
-            : base(aMaster)
+            : base(aMaster, LifeFormTypes.EnvironmentEntity)
         {
+            BeginMainTask();
         }
-        public EnvironmentLifeForm(LifeForm aMaster, DNASequence aDna)
-            : base(aMaster, aDna)
+        public EnvironmentLifeForm(LifeForm aMaster, LifeFormTypes aLifeFormType)
+            : base(aMaster, aLifeFormType)
         {
-            
+            BeginMainTask();
         }
-        public EnvironmentLifeForm(LifeForm aMaster, DNASequence aDna1, DNASequence aDna2)
-            : base(aMaster, aDna1, aDna2)
+        public EnvironmentLifeForm(LifeForm aMaster, LifeFormTypes aLifeFormType, DNASequence aDna)
+            : base(aMaster, aLifeFormType, aDna)
         {
-            
-        }
-         
+            BeginMainTask();
+        }         
         #endregion
     }
 }

@@ -22,7 +22,7 @@ namespace EvoSimApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Dios = new MasterLifeForm(500, 15);
+            Dios = new MasterLifeForm(Convert.ToInt32(textBox1.Text), Convert.ToInt32(textBox2.Text));
         }
 
         private void button2_Click(object sender, EventArgs e)

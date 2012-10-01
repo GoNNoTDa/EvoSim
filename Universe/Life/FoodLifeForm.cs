@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Universe.Entity;
+using Universe.Misc;
 
 namespace Universe.Life
 {
@@ -55,19 +56,22 @@ namespace Universe.Life
 
         #region Constructor
         public FoodLifeForm(LifeForm aMaster)
-            : base(aMaster)
+            : base(aMaster, LifeFormTypes.FoodTypeLifeForm)
         {
-            FoodValue = 0;
+            FoodValue = GetAttribute(SkillTypes.FoodProductionRate);
+            BeginMainTask();
         }
-        public FoodLifeForm(LifeForm aMaster, DNASequence aDna)
-            : base(aMaster, aDna)
+        public FoodLifeForm(LifeForm aMaster, LifeFormTypes aLifeFormType)
+            : base(aMaster, aLifeFormType)
         {
-            FoodValue = 0;
+            FoodValue = GetAttribute(SkillTypes.FoodProductionRate);
+            BeginMainTask();
         }
-        public FoodLifeForm(LifeForm aMaster, DNASequence aDna1, DNASequence aDna2)
-            : base(aMaster, aDna1, aDna2)
+        public FoodLifeForm(LifeForm aMaster, LifeFormTypes aLifeFormType, DNASequence aDna)
+            : base(aMaster, aLifeFormType, aDna)
         {
-            FoodValue = 0;
+            FoodValue = GetAttribute(SkillTypes.FoodProductionRate);
+            BeginMainTask();
         }
          
         #endregion
